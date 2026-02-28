@@ -1,0 +1,1461 @@
+annotations: []
+smart_annotations:
+  - tag: Cloud
+    is_on: true
+    padding: 35
+    label: Cloud
+    tag_offset_x: 96
+    tag_offset_y: 0
+    tag_size: 18
+    group_distance: 400
+    thickness: 1
+    border_style: ''
+    fill_color: '#D5006D80'
+    border_color: '#00000080'
+    z_index: 3
+  - tag: HQ
+    is_on: true
+    padding: 35
+    label: HQ
+    tag_offset_x: -80
+    tag_offset_y: 0
+    tag_size: 18
+    group_distance: 400
+    thickness: 1
+    border_style: ''
+    fill_color: '#A4C8E180'
+    border_color: '#00000080'
+    z_index: 2
+  - tag: Internet
+    is_on: true
+    padding: 35
+    label: Internet
+    tag_offset_x: 0
+    tag_offset_y: 0
+    tag_size: 18
+    group_distance: 400
+    thickness: 1
+    border_style: ''
+    fill_color: '#F16A2080'
+    border_color: '#00000080'
+    z_index: 1
+nodes:
+  - boot_disk_size: null
+    configuration:
+      - name: ios_config.txt
+        content: |-
+          Building configuration...
+
+          Current configuration : 1133 bytes
+          !
+          ! Last configuration change at 21:29:04 UTC Sat Feb 28 2026
+          !
+          version 17.16
+          service timestamps debug datetime msec
+          service timestamps log datetime msec
+          !
+          hostname ISP-1
+          !
+          boot-start-marker
+          boot-end-marker
+          !
+          !
+          no logging console
+          no aaa new-model
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          ip cef
+          login on-success log
+          no ipv6 cef
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          memory free low-watermark processor 79983
+          !
+          !
+          spanning-tree mode rapid-pvst
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          interface Ethernet0/0
+           ip address 1.10.1.1 255.255.255.252
+          !
+          interface Ethernet0/1
+           ip address 1.20.1.1 255.255.255.252
+          !
+          interface Ethernet0/2
+           ip address 200.1.1.1 255.255.255.252
+          !
+          interface Ethernet0/3
+           no ip address
+           shutdown
+          !
+          router bgp 100
+           bgp log-neighbor-changes
+           network 200.1.1.0 mask 255.255.255.252
+           neighbor 1.10.1.2 remote-as 200
+           neighbor 1.20.1.2 remote-as 300
+          !
+          ip forward-protocol nd
+          ip forward-protocol udp
+          !
+          !
+          ip http server
+          ip http secure-server
+          ip ssh bulk-mode 131072
+          no logging btrace
+          !
+          !
+          !
+          control-plane
+          !
+          !
+          !
+          line con 0
+           exec-timeout 0 0
+           logging synchronous
+          line aux 0
+          line vty 0 4
+           exec-timeout 0 0
+           login
+           transport input ssh
+          !
+          !
+          !
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n0
+    image_definition: null
+    label: ISP-1
+    node_definition: iol-xe
+    parameters: {}
+    ram: null
+    tags:
+      - Internet
+    x: -120
+    y: 120
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: Ethernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: Ethernet0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: Ethernet0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: Ethernet0/3
+        mac_address: null
+        type: physical
+        slot: 3
+  - boot_disk_size: null
+    configuration:
+      - name: ios_config.txt
+        content: |-
+          Building configuration...
+
+          Current configuration : 1080 bytes
+          !
+          ! Last configuration change at 21:29:04 UTC Sat Feb 28 2026
+          !
+          version 17.16
+          service timestamps debug datetime msec
+          service timestamps log datetime msec
+          !
+          hostname ISP-2
+          !
+          boot-start-marker
+          boot-end-marker
+          !
+          !
+          no logging console
+          no aaa new-model
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          ip cef
+          login on-success log
+          no ipv6 cef
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          memory free low-watermark processor 79983
+          !
+          !
+          spanning-tree mode rapid-pvst
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          interface Ethernet0/0
+           ip address 1.10.1.2 255.255.255.252
+          !
+          interface Ethernet0/1
+           ip address 2.10.1.2 255.255.255.252
+          !
+          interface Ethernet0/2
+           no ip address
+           shutdown
+          !
+          interface Ethernet0/3
+           no ip address
+           shutdown
+          !
+          router bgp 200
+           bgp log-neighbor-changes
+           neighbor 1.10.1.1 remote-as 100
+           neighbor 2.10.1.1 remote-as 400
+          !
+          ip forward-protocol nd
+          ip forward-protocol udp
+          !
+          !
+          ip http server
+          ip http secure-server
+          ip ssh bulk-mode 131072
+          no logging btrace
+          !
+          !
+          !
+          control-plane
+          !
+          !
+          !
+          line con 0
+           exec-timeout 0 0
+           logging synchronous
+          line aux 0
+          line vty 0 4
+           exec-timeout 0 0
+           login
+           transport input ssh
+          !
+          !
+          !
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n1
+    image_definition: null
+    label: ISP-2
+    node_definition: iol-xe
+    parameters: {}
+    ram: null
+    tags:
+      - Internet
+    x: 40
+    y: 0
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: Ethernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: Ethernet0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: Ethernet0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: Ethernet0/3
+        mac_address: null
+        type: physical
+        slot: 3
+  - boot_disk_size: null
+    configuration:
+      - name: ios_config.txt
+        content: |-
+          Building configuration...
+
+          Current configuration : 1133 bytes
+          !
+          ! Last configuration change at 21:29:04 UTC Sat Feb 28 2026
+          !
+          version 17.16
+          service timestamps debug datetime msec
+          service timestamps log datetime msec
+          !
+          hostname ISP-4
+          !
+          boot-start-marker
+          boot-end-marker
+          !
+          !
+          no logging console
+          no aaa new-model
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          ip cef
+          login on-success log
+          no ipv6 cef
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          memory free low-watermark processor 79983
+          !
+          !
+          spanning-tree mode rapid-pvst
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          interface Ethernet0/0
+           ip address 2.10.1.1 255.255.255.252
+          !
+          interface Ethernet0/1
+           ip address 2.20.1.1 255.255.255.252
+          !
+          interface Ethernet0/2
+           ip address 199.1.1.1 255.255.255.252
+          !
+          interface Ethernet0/3
+           no ip address
+           shutdown
+          !
+          router bgp 400
+           bgp log-neighbor-changes
+           network 199.1.1.0 mask 255.255.255.252
+           neighbor 2.10.1.2 remote-as 200
+           neighbor 2.20.1.2 remote-as 300
+          !
+          ip forward-protocol nd
+          ip forward-protocol udp
+          !
+          !
+          ip http server
+          ip http secure-server
+          ip ssh bulk-mode 131072
+          no logging btrace
+          !
+          !
+          !
+          control-plane
+          !
+          !
+          !
+          line con 0
+           exec-timeout 0 0
+           logging synchronous
+          line aux 0
+          line vty 0 4
+           exec-timeout 0 0
+           login
+           transport input ssh
+          !
+          !
+          !
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n2
+    image_definition: null
+    label: ISP-4
+    node_definition: iol-xe
+    parameters: {}
+    ram: null
+    tags:
+      - Internet
+    x: 200
+    y: 120
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: Ethernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: Ethernet0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: Ethernet0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: Ethernet0/3
+        mac_address: null
+        type: physical
+        slot: 3
+  - boot_disk_size: null
+    configuration:
+      - name: ios_config.txt
+        content: |-
+          Building configuration...
+
+          Current configuration : 1080 bytes
+          !
+          ! Last configuration change at 21:29:05 UTC Sat Feb 28 2026
+          !
+          version 17.16
+          service timestamps debug datetime msec
+          service timestamps log datetime msec
+          !
+          hostname ISP-3
+          !
+          boot-start-marker
+          boot-end-marker
+          !
+          !
+          no logging console
+          no aaa new-model
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          ip cef
+          login on-success log
+          no ipv6 cef
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          memory free low-watermark processor 79983
+          !
+          !
+          spanning-tree mode rapid-pvst
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          interface Ethernet0/0
+           ip address 1.20.1.2 255.255.255.252
+          !
+          interface Ethernet0/1
+           ip address 2.20.1.2 255.255.255.252
+          !
+          interface Ethernet0/2
+           no ip address
+           shutdown
+          !
+          interface Ethernet0/3
+           no ip address
+           shutdown
+          !
+          router bgp 300
+           bgp log-neighbor-changes
+           neighbor 1.20.1.1 remote-as 100
+           neighbor 2.20.1.1 remote-as 400
+          !
+          ip forward-protocol nd
+          ip forward-protocol udp
+          !
+          !
+          ip http server
+          ip http secure-server
+          ip ssh bulk-mode 131072
+          no logging btrace
+          !
+          !
+          !
+          control-plane
+          !
+          !
+          !
+          line con 0
+           exec-timeout 0 0
+           logging synchronous
+          line aux 0
+          line vty 0 4
+           exec-timeout 0 0
+           login
+           transport input ssh
+          !
+          !
+          !
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n3
+    image_definition: null
+    label: ISP-3
+    node_definition: iol-xe
+    parameters: {}
+    ram: null
+    tags:
+      - Internet
+    x: 40
+    y: 240
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: Ethernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: Ethernet0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: Ethernet0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: Ethernet0/3
+        mac_address: null
+        type: physical
+        slot: 3
+  - boot_disk_size: null
+    configuration:
+      - name: iosxe_config.txt
+        content: "Building configuration...\n\nCurrent configuration : 7543 bytes\n\
+          !\n! Last configuration change at 21:29:02 UTC Sat Feb 28 2026\n!\nversion\
+          \ 17.16\nservice timestamps debug datetime msec\nservice timestamps log\
+          \ datetime msec\nplatform qfp utilization monitor load 80\nplatform sslvpn\
+          \ use-pd\nplatform console serial\n!\nhostname HQ-Edge\n!\nboot-start-marker\n\
+          boot-end-marker\n!\n!\nno logging console\nno aaa new-model\n!\n!\n!\n!\n\
+          !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\nlogin on-success log\n!\n!\nsubscriber\
+          \ templating\n!\n!\n!\n!\n!\n!\nl2vpn evpn\n replication-type ingress\n\
+          \ router-id Loopback1\n!\nl2vpn evpn instance 10 vlan-based\n encapsulation\
+          \ vxlan\n rd 65001:10\n route-target export 65001:10\n route-target import\
+          \ 65001:10\n replication-type ingress\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto\
+          \ pki trustpoint SLA-TrustPoint\n enrollment pkcs12\n revocation-check crl\n\
+          \ hash sha512\n!\ncrypto pki trustpoint TP-self-signed-3890046588\n enrollment\
+          \ selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-3890046588\n\
+          \ revocation-check none\n rsakeypair TP-self-signed-3890046588\n hash sha512\n\
+          !\n!\ncrypto pki certificate chain SLA-TrustPoint\n certificate ca 01\n\
+          \  30820321 30820209 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030\n\
+          \  32310E30 0C060355 040A1305 43697363 6F312030 1E060355 04031317 43697363\n\
+          \  6F204C69 63656E73 696E6720 526F6F74 20434130 1E170D31 33303533 30313934\n\
+          \  3834375A 170D3338 30353330 31393438 34375A30 32310E30 0C060355 040A1305\n\
+          \  43697363 6F312030 1E060355 04031317 43697363 6F204C69 63656E73 696E6720\n\
+          \  526F6F74 20434130 82012230 0D06092A 864886F7 0D010101 05000382 010F0030\n\
+          \  82010A02 82010100 A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D\n\
+          \  CBB4C798 212AA147 C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520\n\
+          \  1C394D78 462EF239 C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE\n\
+          \  4AA4E80D DB6FD1C9 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC\n\
+          \  7390A3EB 2B5436AD C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188\n\
+          \  68E69491 20F320E7 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7\n\
+          \  C7479096 B4CB2D62 EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191\n\
+          \  C55F0D76 61F9A4CD 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44\n\
+          \  DFC7C6CF 04DD7FD1 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201\n\
+          \  06300F06 03551D13 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85\n\
+          \  4B3D31E5 1B3E6A17 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500\n\
+          \  03820101 00507F24 D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905\n\
+          \  604EDCDE FF4FED2B 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B\n\
+          \  D98987BF E40CBD9E 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8\n\
+          \  467A3DF4 4D565700 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C\n\
+          \  7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B\n\
+          \  5FB0DA06 B92AFE7F 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678\n\
+          \  80DDCD16 D6BACECA EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB\n\
+          \  418616A9 4093E049 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0\n\
+          \  D697DF7F 28\n  \tquit\ncrypto pki certificate chain TP-self-signed-3890046588\n\
+          \ certificate self-signed 01\n  30820330 30820218 A0030201 02020101 300D0609\
+          \ 2A864886 F70D0101 0D050030\n  31312F30 2D060355 04030C26 494F532D 53656C66\
+          \ 2D536967 6E65642D 43657274\n  69666963 6174652D 33383930 30343635 3838301E\
+          \ 170D3236 30323231 31333236\n  33345A17 0D333630 32323131 33323633 345A3031\
+          \ 312F302D 06035504 030C2649\n  4F532D53 656C662D 5369676E 65642D43 65727469\
+          \ 66696361 74652D33 38393030\n  34363538 38308201 22300D06 092A8648 86F70D01\
+          \ 01010500 0382010F 00308201\n  0A028201 0100C0B5 1698FC1C F79C41CA 25EF55D7\
+          \ 2F3F420B 06D21651 9A034EB8\n  346C93AF AB58F42A 6BB2BBD8 21049833 E6683C1F\
+          \ 848E177F 3F0898DA 8EBF219F\n  9ADDD09C D77B0A86 95A8C9B4 82E06BB5 DA39343C\
+          \ 5E41045F A3264C5D C3EDC5A7\n  04AE8606 38D2CA76 3A0523B4 8EAA4ABA 74A3733A\
+          \ 4920365B B89BA79B 80E1EE9F\n  62BB2A98 317EB4F7 8779A335 9DEED8B6 0713E472\
+          \ B913C88A 29E90FC1 79F8ABD8\n  47398F1B 958601F7 E0213BB6 37BBB4AB 9A4F1786\
+          \ 0BB973E5 7665E2F3 A2DD751F\n  1E08C8CA B8529D7B 2F554F0C 00480828 84335530\
+          \ A82FF146 C3C059B2 243ED90E\n  22436D8C 5B242A9D 8E3E99FE DB0941FC 6E6476E6\
+          \ 2AE98CC1 E7D4D520 C0ED693B\n  18985AEE 028F0203 010001A3 53305130 1D060355\
+          \ 1D0E0416 0414F4D9 A7B2DCCF\n  A1CAAA00 F078A877 C2B8C203 3B35301F 0603551D\
+          \ 23041830 168014F4 D9A7B2DC\n  CFA1CAAA 00F078A8 77C2B8C2 033B3530 0F060355\
+          \ 1D130101 FF040530 030101FF\n  300D0609 2A864886 F70D0101 0D050003 82010100\
+          \ A70F53B1 E4E89DB8 2C724344\n  D685B17C 83B49763 D7B17DD7 D00E269A 3459426C\
+          \ 073E8D6B C9E40438 520F7F23\n  FF377840 C53A4ABA AAB6B63F 151EFEF9 2A804471\
+          \ CAD894E9 118D42B4 1D5CA575\n  D5D7C81F 12E49530 7B72172F DA492037 4C6D5CDC\
+          \ 11CEE17E 5045A914 E55CEBC1\n  865DB535 09A3A088 77C5517F B0BAFE8A EF95D98B\
+          \ EAE42A93 3E7B677B 12CA6321\n  A5721308 B3975808 41A00CBD 8907E7A2 03218E71\
+          \ 48935917 88E6370A F19A61C5\n  9AAC266E 10825F87 4FA149D5 B81493BE 6633EBCE\
+          \ 8A8E58BA 34EDA51F 5D2377FE\n  5F6D9F8F F1C0AEC3 06BF4D4A 4A38C1F9 381B2185\
+          \ B264E330 3B7CBEE6 9911D1B8\n  0F3A14A9 23646A9D 54FB1CF6 2AA10EB2 85B7EE1C\n\
+          \  \tquit\n!\n!\n!\n!\n!\n!\n!\n!\n!\nlicense udi pid C8000V sn 9OE4LXZG2BX\n\
+          license boot level network-advantage addon dna-advantage\nmemory free low-watermark\
+          \ processor 165529\ndiagnostic bootup level minimal\n!\n!\nspanning-tree\
+          \ extend system-id\n!\n!\n!\nredundancy\nbridge-domain 10\n member GigabitEthernet2\
+          \ service-instance 10\n member evpn-instance 10 vni 10010\n!\n!\n!\n!\n\
+          crypto ikev2 proposal prop-1\n encryption aes-cbc-256\n integrity sha256\n\
+          \ group 14\n!\ncrypto ikev2 policy policy-1\n proposal prop-1\n!\ncrypto\
+          \ ikev2 keyring keys\n peer Cloud\n  address 0.0.0.0 0.0.0.0\n  pre-shared-key\
+          \ michael1\n !\n!\n!\ncrypto ikev2 profile cloud\n match identity remote\
+          \ address 199.1.1.2 255.255.255.255\n identity local address 200.1.1.2\n\
+          \ authentication remote pre-share\n authentication local pre-share\n keyring\
+          \ local keys\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto ipsec transform-set\
+          \ t-set esp-aes 256 esp-sha256-hmac\n mode tunnel\n!\ncrypto ipsec profile\
+          \ cloud\n set transform-set t-set\n set ikev2-profile cloud\n!\n!\n!\n!\n\
+          !\n!\n!\n!\n!\n!\ninterface Loopback1\n ip address 10.200.1.1 255.255.255.255\n\
+          !\ninterface Tunnel100\n ip address 10.0.0.1 255.255.255.252\n ip tcp adjust-mss\
+          \ 1320\n tunnel source GigabitEthernet1\n tunnel destination 199.1.1.2\n\
+          \ tunnel protection ipsec profile cloud\n!\ninterface GigabitEthernet1\n\
+          \ ip address 200.1.1.2 255.255.255.252\n negotiation auto\n!\ninterface\
+          \ GigabitEthernet2\n no ip address\n negotiation auto\n service instance\
+          \ 10 ethernet\n  encapsulation dot1q 10\n !\n!\ninterface GigabitEthernet3\n\
+          \ no ip address\n shutdown\n negotiation auto\n!\ninterface GigabitEthernet4\n\
+          \ no ip address\n shutdown\n negotiation auto\n!\ninterface nve1\n no ip\
+          \ address\n source-interface Loopback1\n host-reachability protocol bgp\n\
+          \ member vni 10010 ingress-replication\n!\n!\nrouter eigrp r1\n !\n address-family\
+          \ ipv4 unicast autonomous-system 100\n  !\n  topology base\n  exit-af-topology\n\
+          \  network 10.0.0.0\n exit-address-family\n!\nrouter bgp 65001\n bgp log-neighbor-changes\n\
+          \ neighbor 10.200.1.2 remote-as 65001\n neighbor 10.200.1.2 update-source\
+          \ Loopback1\n !\n address-family l2vpn evpn\n  neighbor 10.200.1.2 activate\n\
+          \  neighbor 10.200.1.2 send-community extended\n exit-address-family\n!\n\
+          ip forward-protocol nd\nip forward-protocol udp\n!\nno ip http server\n\
+          ip http secure-server\nip route 0.0.0.0 0.0.0.0 200.1.1.1\nip ssh bulk-mode\
+          \ 131072\n!\n!\n!\n!\ncontrol-plane\n!\n!\nmgcp behavior rsip-range tgcp-only\n\
+          mgcp behavior comedia-role none\nmgcp behavior comedia-check-media-src disable\n\
+          mgcp behavior comedia-sdp-force disable\n!\nmgcp profile default\n!\n!\n\
+          !\n!\n!\n!\nline con 0\n exec-timeout 0 0\n stopbits 1\nline aux 0\nline\
+          \ vty 0 4\n exec-timeout 0 0\n login\n transport input ssh\n!\n!\n!\n!\n\
+          !\n!\n!\nend"
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n4
+    image_definition: null
+    label: HQ-Edge
+    node_definition: cat8000v
+    parameters: {}
+    ram: null
+    tags:
+      - HQ
+    x: -320
+    y: 120
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: GigabitEthernet1
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: GigabitEthernet2
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: GigabitEthernet3
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: GigabitEthernet4
+        mac_address: null
+        type: physical
+        slot: 3
+  - boot_disk_size: null
+    configuration:
+      - name: iosxe_config.txt
+        content: "Building configuration...\n\nCurrent configuration : 7611 bytes\n\
+          !\n! Last configuration change at 21:29:02 UTC Sat Feb 28 2026\n!\nversion\
+          \ 17.16\nservice timestamps debug datetime msec\nservice timestamps log\
+          \ datetime msec\nplatform qfp utilization monitor load 80\nplatform sslvpn\
+          \ use-pd\nplatform console serial\n!\nhostname Cloud-Edge\n!\nboot-start-marker\n\
+          boot-end-marker\n!\n!\nno logging console\nno aaa new-model\n!\n!\n!\n!\n\
+          !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\nlogin on-success log\n!\n!\nsubscriber\
+          \ templating\n!\n!\n!\n!\n!\n!\nl2vpn evpn\n replication-type ingress\n\
+          \ router-id Loopback1\n!\nl2vpn evpn instance 10 vlan-based\n encapsulation\
+          \ vxlan\n rd 65001:10\n route-target export 65001:10\n route-target import\
+          \ 65001:10\n replication-type ingress\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto\
+          \ pki trustpoint SLA-TrustPoint\n enrollment pkcs12\n revocation-check crl\n\
+          \ hash sha512\n!\ncrypto pki trustpoint TP-self-signed-2538998755\n enrollment\
+          \ selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-2538998755\n\
+          \ revocation-check none\n rsakeypair TP-self-signed-2538998755\n hash sha512\n\
+          !\n!\ncrypto pki certificate chain SLA-TrustPoint\n certificate ca 01\n\
+          \  30820321 30820209 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030\n\
+          \  32310E30 0C060355 040A1305 43697363 6F312030 1E060355 04031317 43697363\n\
+          \  6F204C69 63656E73 696E6720 526F6F74 20434130 1E170D31 33303533 30313934\n\
+          \  3834375A 170D3338 30353330 31393438 34375A30 32310E30 0C060355 040A1305\n\
+          \  43697363 6F312030 1E060355 04031317 43697363 6F204C69 63656E73 696E6720\n\
+          \  526F6F74 20434130 82012230 0D06092A 864886F7 0D010101 05000382 010F0030\n\
+          \  82010A02 82010100 A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D\n\
+          \  CBB4C798 212AA147 C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520\n\
+          \  1C394D78 462EF239 C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE\n\
+          \  4AA4E80D DB6FD1C9 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC\n\
+          \  7390A3EB 2B5436AD C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188\n\
+          \  68E69491 20F320E7 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7\n\
+          \  C7479096 B4CB2D62 EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191\n\
+          \  C55F0D76 61F9A4CD 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44\n\
+          \  DFC7C6CF 04DD7FD1 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201\n\
+          \  06300F06 03551D13 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85\n\
+          \  4B3D31E5 1B3E6A17 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500\n\
+          \  03820101 00507F24 D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905\n\
+          \  604EDCDE FF4FED2B 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B\n\
+          \  D98987BF E40CBD9E 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8\n\
+          \  467A3DF4 4D565700 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C\n\
+          \  7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B\n\
+          \  5FB0DA06 B92AFE7F 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678\n\
+          \  80DDCD16 D6BACECA EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB\n\
+          \  418616A9 4093E049 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0\n\
+          \  D697DF7F 28\n  \tquit\ncrypto pki certificate chain TP-self-signed-2538998755\n\
+          \ certificate self-signed 01\n  30820330 30820218 A0030201 02020101 300D0609\
+          \ 2A864886 F70D0101 0D050030\n  31312F30 2D060355 04030C26 494F532D 53656C66\
+          \ 2D536967 6E65642D 43657274\n  69666963 6174652D 32353338 39393837 3535301E\
+          \ 170D3236 30323231 31333236\n  34385A17 0D333630 32323131 33323634 385A3031\
+          \ 312F302D 06035504 030C2649\n  4F532D53 656C662D 5369676E 65642D43 65727469\
+          \ 66696361 74652D32 35333839\n  39383735 35308201 22300D06 092A8648 86F70D01\
+          \ 01010500 0382010F 00308201\n  0A028201 01009C76 318AFC4D 44DD839D 301F18BB\
+          \ 6ACA7836 4A1194DA 4829FDEF\n  C39AC7A5 2577ED70 6415DA23 3415F135 FC0D7AD8\
+          \ D45D0687 98A251F6 A9DF224A\n  6E1E008F 2AC8ECAE B3C5B277 2BABBCF3 93596AF9\
+          \ 0A445DBE ED6CA237 CAEF2468\n  E1E73391 0F13358D 351C747E 4F9AA608 E9D97F80\
+          \ B179CCBA F2D7562D 90116A4A\n  27A55A12 18C3A402 08ACAC32 AD7BC269 82CFAF66\
+          \ 1E8781DB 0A3D51D3 4E7B1D1C\n  13ADFDAF 1C636AA3 5C4B0730 03A64429 3204A37C\
+          \ 0521D6D4 855BBDEA ADBE64F1\n  E086069E A578B985 9C40C01D 2BBF4660 36238D96\
+          \ CBF23EEA 5BCF1826 5FD29BE5\n  A0CDE1D6 D105C001 B8757549 CC8180AF F45DA292\
+          \ 5DCBD9E3 F356A8AD A6225F92\n  9A9E39F3 9CCF0203 010001A3 53305130 1D060355\
+          \ 1D0E0416 04141CF1 475AB01F\n  B5DBDBA9 96AD0CB8 A077747C 2804301F 0603551D\
+          \ 23041830 1680141C F1475AB0\n  1FB5DBDB A996AD0C B8A07774 7C280430 0F060355\
+          \ 1D130101 FF040530 030101FF\n  300D0609 2A864886 F70D0101 0D050003 82010100\
+          \ 43C84BBF EB719598 85F5B0F6\n  15893B4D 373DFDD6 BFD543D4 77D295CE 8766E321\
+          \ 4BB7682B 70E30335 58B0229B\n  3E93F972 7B54867C E20E089B 13231990 E636FC0C\
+          \ 48292A29 3597088E 5D589794\n  7CE1D632 E6949904 BC8C77D5 CB3FB34A B5FC17A5\
+          \ C33DF21F 03E6A6EC E9CB7EDE\n  AF99A2A9 FCD96C65 74C3473C 12F904FA 38D5EA69\
+          \ B3F5D457 000CFEEA 4510EAF9\n  7AC4D2E9 7B5F8431 FE701F95 8AB5916A D113C0BF\
+          \ 5735BCA2 AAFF0A5A 614D033F\n  9AD7DD66 85224486 A4D11F77 388AAE07 AC8F2FEE\
+          \ 56749E56 799F6947 F8BAF9EC\n  FC6733F4 CAD69AF2 1B20FDA3 A30672C6 2686BB9F\
+          \ 04C55D1E 65384DEC C672B96C\n  0B880C66 93865E41 513FDF09 B77CBFA7 46D7CFFD\n\
+          \  \tquit\n!\n!\n!\n!\n!\n!\n!\n!\n!\nlicense udi pid C8000V sn 9POGP0MNFGH\n\
+          license boot level network-advantage addon dna-advantage\nmemory free low-watermark\
+          \ processor 165529\ndiagnostic bootup level minimal\n!\n!\nspanning-tree\
+          \ extend system-id\n!\n!\n!\nredundancy\nbridge-domain 10\n member GigabitEthernet2\
+          \ service-instance 10\n member evpn-instance 10 vni 10010\n!\n!\n!\n!\n\
+          crypto ikev2 proposal prop-1\n encryption aes-cbc-256\n integrity sha256\n\
+          \ group 14\n!\ncrypto ikev2 policy policy-1\n proposal prop-1\n!\ncrypto\
+          \ ikev2 keyring keys\n peer HQ\n  address 0.0.0.0 0.0.0.0\n  pre-shared-key\
+          \ michael1\n !\n!\n!\ncrypto ikev2 profile HQ\n match identity remote address\
+          \ 200.1.1.2 255.255.255.255\n identity local address 199.1.1.2\n authentication\
+          \ remote pre-share\n authentication local pre-share\n keyring local keys\n\
+          !\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ncrypto ipsec transform-set t-set\
+          \ esp-aes 256 esp-sha256-hmac\n mode tunnel\n!\ncrypto ipsec profile HQ\n\
+          \ set transform-set t-set\n set ikev2-profile HQ\n!\n!\n!\n!\n!\n!\n!\n\
+          !\n!\n!\ninterface Loopback1\n ip address 10.200.1.2 255.255.255.255\n!\n\
+          interface Tunnel100\n ip address 10.0.0.2 255.255.255.252\n ip tcp adjust-mss\
+          \ 1320\n tunnel source GigabitEthernet1\n tunnel destination 200.1.1.2\n\
+          \ tunnel protection ipsec profile HQ\n!\ninterface GigabitEthernet1\n ip\
+          \ address 199.1.1.2 255.255.255.252\n negotiation auto\n!\ninterface GigabitEthernet2\n\
+          \ no ip address\n negotiation auto\n service instance 10 ethernet\n  encapsulation\
+          \ dot1q 10\n !\n!\ninterface GigabitEthernet3\n no ip address\n shutdown\n\
+          \ negotiation auto\n!\ninterface GigabitEthernet4\n no ip address\n shutdown\n\
+          \ negotiation auto\n!\ninterface BDI10\n ip address 192.168.1.1 255.255.255.0\n\
+          \ encapsulation dot1Q 10\n!\ninterface nve1\n no ip address\n source-interface\
+          \ Loopback1\n host-reachability protocol bgp\n member vni 10010 ingress-replication\n\
+          !\n!\nrouter eigrp r1\n !\n address-family ipv4 unicast autonomous-system\
+          \ 100\n  !\n  topology base\n  exit-af-topology\n  network 10.0.0.0\n exit-address-family\n\
+          !\nrouter bgp 65001\n bgp log-neighbor-changes\n neighbor 10.200.1.1 remote-as\
+          \ 65001\n neighbor 10.200.1.1 update-source Loopback1\n !\n address-family\
+          \ l2vpn evpn\n  neighbor 10.200.1.1 activate\n  neighbor 10.200.1.1 send-community\
+          \ extended\n exit-address-family\n!\nip forward-protocol nd\nip forward-protocol\
+          \ udp\n!\nno ip http server\nip http secure-server\nip route 0.0.0.0 0.0.0.0\
+          \ 199.1.1.1\nip ssh bulk-mode 131072\n!\n!\n!\n!\ncontrol-plane\n!\n!\n\
+          mgcp behavior rsip-range tgcp-only\nmgcp behavior comedia-role none\nmgcp\
+          \ behavior comedia-check-media-src disable\nmgcp behavior comedia-sdp-force\
+          \ disable\n!\nmgcp profile default\n!\n!\n!\n!\n!\n!\nline con 0\n exec-timeout\
+          \ 0 0\n stopbits 1\nline aux 0\nline vty 0 4\n exec-timeout 0 0\n login\n\
+          \ transport input ssh\n!\n!\n!\n!\n!\n!\n!\nend"
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n5
+    image_definition: null
+    label: Cloud-Edge
+    node_definition: cat8000v
+    parameters: {}
+    ram: null
+    tags:
+      - Cloud
+    x: 400
+    y: 120
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: GigabitEthernet1
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: GigabitEthernet2
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: GigabitEthernet3
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: GigabitEthernet4
+        mac_address: null
+        type: physical
+        slot: 3
+  - boot_disk_size: null
+    configuration:
+      - name: ios_config.txt
+        content: |-
+          Building configuration...
+
+          Current configuration : 1082 bytes
+          !
+          ! Last configuration change at 21:29:05 UTC Sat Feb 28 2026
+          !
+          version 17.16
+          service timestamps debug datetime msec
+          service timestamps log datetime msec
+          !
+          hostname Cloud-Vnet
+          !
+          boot-start-marker
+          boot-end-marker
+          !
+          !
+          no logging console
+          no aaa new-model
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          ip audit notify log
+          ip audit po max-events 100
+          ip cef
+          login on-success log
+          no ipv6 cef
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          memory free low-watermark processor 79497
+          !
+          !
+          spanning-tree mode rapid-pvst
+          spanning-tree extend system-id
+          !
+          !
+          vlan internal allocation policy ascending
+          !
+          !
+          !
+          !
+          !
+          interface Loopback1
+           no ip address
+          !
+          interface Ethernet0/0
+           switchport trunk encapsulation dot1q
+           switchport mode trunk
+          !
+          interface Ethernet0/1
+           switchport access vlan 10
+           switchport mode access
+          !
+          interface Ethernet0/2
+          !
+          interface Ethernet0/3
+          !
+          ip forward-protocol nd
+          ip forward-protocol udp
+          !
+          !
+          ip http server
+          ip http secure-server
+          ip ssh bulk-mode 131072
+          !
+          no logging btrace
+          !
+          !
+          !
+          control-plane
+          !
+          !
+          !
+          line con 0
+           exec-timeout 0 0
+           logging synchronous
+          line aux 0
+          line vty 0 4
+           exec-timeout 0 0
+           login
+           transport input ssh
+          !
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n6
+    image_definition: null
+    label: Cloud-Vnet
+    node_definition: ioll2-xe
+    parameters: {}
+    ram: null
+    tags:
+      - Cloud
+    x: 560
+    y: 120
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: Ethernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: Ethernet0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: Ethernet0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: Ethernet0/3
+        mac_address: null
+        type: physical
+        slot: 3
+  - boot_disk_size: null
+    configuration:
+      - name: ios_config.txt
+        content: |-
+          Building configuration...
+
+          Current configuration : 1093 bytes
+          !
+          ! Last configuration change at 21:29:04 UTC Sat Feb 28 2026
+          !
+          version 17.16
+          service timestamps debug datetime msec
+          service timestamps log datetime msec
+          !
+          hostname HQ-Core
+          !
+          boot-start-marker
+          boot-end-marker
+          !
+          !
+          no logging console
+          no aaa new-model
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          ip audit notify log
+          ip audit po max-events 100
+          ip cef
+          login on-success log
+          no ipv6 cef
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          !
+          memory free low-watermark processor 79497
+          !
+          !
+          spanning-tree mode rapid-pvst
+          spanning-tree extend system-id
+          !
+          !
+          vlan internal allocation policy ascending
+          !
+          !
+          !
+          !
+          !
+          interface Ethernet0/0
+           switchport access vlan 10
+           switchport mode access
+          !
+          interface Ethernet0/1
+           switchport access vlan 20
+           switchport mode access
+          !
+          interface Ethernet0/2
+           switchport trunk encapsulation dot1q
+           switchport mode trunk
+          !
+          interface Ethernet0/3
+          !
+          ip forward-protocol nd
+          ip forward-protocol udp
+          !
+          !
+          ip http server
+          ip http secure-server
+          ip ssh bulk-mode 131072
+          !
+          no logging btrace
+          !
+          !
+          !
+          control-plane
+          !
+          !
+          !
+          line con 0
+           exec-timeout 0 0
+           logging synchronous
+          line aux 0
+          line vty 0 4
+           exec-timeout 0 0
+           login
+           transport input ssh
+          !
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n7
+    image_definition: null
+    label: HQ-Core
+    node_definition: ioll2-xe
+    parameters: {}
+    ram: null
+    tags:
+      - HQ
+    x: -480
+    y: 120
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: Ethernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: Ethernet0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: Ethernet0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: Ethernet0/3
+        mac_address: null
+        type: physical
+        slot: 3
+  - boot_disk_size: null
+    configuration: []
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n8
+    image_definition: null
+    label: Cloud-Host1
+    node_definition: ubuntu
+    parameters: {}
+    ram: null
+    tags:
+      - Cloud
+    x: 720
+    y: 40
+    interfaces:
+      - id: i0
+        label: ens2
+        mac_address: null
+        type: physical
+        slot: 0
+  - boot_disk_size: null
+    configuration: []
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n9
+    image_definition: null
+    label: Cloud-Host2
+    node_definition: ubuntu
+    parameters: {}
+    ram: null
+    tags:
+      - Cloud
+    x: 720
+    y: 200
+    interfaces:
+      - id: i0
+        label: ens2
+        mac_address: null
+        type: physical
+        slot: 0
+  - boot_disk_size: null
+    configuration: []
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n10
+    image_definition: null
+    label: HQ-Host1
+    node_definition: ubuntu
+    parameters: {}
+    ram: null
+    tags:
+      - HQ
+    x: -640
+    y: 40
+    interfaces:
+      - id: i0
+        label: ens2
+        mac_address: null
+        type: physical
+        slot: 0
+  - boot_disk_size: null
+    configuration: []
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n11
+    image_definition: null
+    label: HQ-Host2
+    node_definition: ubuntu
+    parameters: {}
+    ram: null
+    tags:
+      - HQ
+    x: -640
+    y: 200
+    interfaces:
+      - id: i0
+        label: ens2
+        mac_address: null
+        type: physical
+        slot: 0
+links:
+  - id: l0
+    n1: n0
+    n2: n1
+    i1: i1
+    i2: i1
+    conditioning: {}
+    label: iol-0-Ethernet0/0<->iol-1-Ethernet0/0
+  - id: l1
+    n1: n0
+    n2: n3
+    i1: i2
+    i2: i1
+    conditioning: {}
+    label: iol-0-Ethernet0/1<->iol-3-Ethernet0/0
+  - id: l2
+    n1: n1
+    n2: n2
+    i1: i2
+    i2: i1
+    conditioning: {}
+    label: iol-1-Ethernet0/1<->iol-2-Ethernet0/0
+  - id: l3
+    n1: n3
+    n2: n2
+    i1: i2
+    i2: i2
+    conditioning: {}
+    label: iol-3-Ethernet0/1<->iol-2-Ethernet0/1
+  - id: l4
+    n1: n5
+    n2: n2
+    i1: i1
+    i2: i3
+    conditioning: {}
+    label: cat8000v-1-GigabitEthernet1<->iol-2-Ethernet0/2
+  - id: l5
+    n1: n4
+    n2: n0
+    i1: i1
+    i2: i3
+    conditioning: {}
+    label: cat8000v-0-GigabitEthernet1<->iol-0-Ethernet0/2
+  - id: l6
+    n1: n10
+    n2: n7
+    i1: i0
+    i2: i1
+    conditioning: {}
+    label: ubuntu-2-ens2<->HQ-Core-Ethernet0/0
+  - id: l7
+    n1: n11
+    n2: n7
+    i1: i0
+    i2: i2
+    conditioning: {}
+    label: ubuntu-3-ens2<->HQ-Core-Ethernet0/1
+  - id: l8
+    n1: n7
+    n2: n4
+    i1: i3
+    i2: i2
+    conditioning: {}
+    label: HQ-Core-Ethernet0/2<->HQ-Edge-GigabitEthernet2
+  - id: l9
+    n1: n6
+    n2: n5
+    i1: i1
+    i2: i2
+    conditioning: {}
+    label: iol-l2-0-Ethernet0/0<->cat8000v-1-GigabitEthernet2
+  - id: l10
+    n1: n6
+    n2: n8
+    i1: i2
+    i2: i0
+    conditioning: {}
+    label: iol-l2-0-Ethernet0/1<->ubuntu-0-ens2
+  - id: l11
+    n1: n6
+    n2: n9
+    i1: i3
+    i2: i0
+    conditioning: {}
+    label: iol-l2-0-Ethernet0/2<->ubuntu-1-ens2
+lab:
+  description: ''
+  notes: ''
+  title: 'EVPN VXLAN over VPN using Bridge Groups '
+  version: 0.3.0
