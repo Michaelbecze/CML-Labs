@@ -1,0 +1,807 @@
+annotations:
+  - border_color: '#808080FF'
+    border_radius: 37
+    border_style: ''
+    color: '#EBE0E0FF'
+    rotation: 0
+    thickness: 1
+    type: rectangle
+    x1: -240.0
+    y1: 0.0
+    x2: 240.0
+    y2: 160.0
+    z_index: 0
+  - border_color: '#00000000'
+    border_style: ''
+    color: '#000000'
+    rotation: 0
+    text_bold: false
+    text_content: VXLAN Fabric
+    text_font: monospace
+    text_italic: false
+    text_size: 12
+    text_unit: pt
+    thickness: 1
+    type: text
+    x1: -176.3250213566566
+    y1: 121.8211522033341
+    z_index: 1
+smart_annotations:
+  - tag: EAST
+    is_on: true
+    padding: 35
+    label: EAST
+    tag_offset_x: 0
+    tag_offset_y: 0
+    tag_size: 15
+    group_distance: 400
+    thickness: 1
+    border_style: ''
+    fill_color: '#F16A2080'
+    border_color: '#00000080'
+    z_index: 1
+  - tag: WEST
+    is_on: true
+    padding: 35
+    label: WEST
+    tag_offset_x: 0
+    tag_offset_y: -14
+    tag_size: 14
+    group_distance: 400
+    thickness: 1
+    border_style: ''
+    fill_color: '#31A3F380'
+    border_color: '#00000080'
+    z_index: 2
+nodes:
+  - boot_disk_size: null
+    configuration:
+      - name: user-data
+        content: |-
+          #cloud-config
+          hostname: west-host1
+          manage_etc_hosts: True
+          system_info:
+            default_user:
+              name: cisco
+          password: cisco
+          chpasswd: { expire: False }
+          ssh_pwauth: True
+          ssh_authorized_keys:
+            - your-ssh-pubkey-line-goes-here
+      - name: network-config
+        content: |-
+          #network-config
+          network:
+            version: 2
+            ethernets:
+              ens2:
+                addresses:
+                - 192.168.100.6/24
+                dhcp4: false
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n0
+    image_definition: null
+    label: West-host
+    node_definition: ubuntu
+    parameters: {}
+    ram: null
+    tags:
+      - WEST
+    x: 240
+    y: 80
+    interfaces:
+      - id: i0
+        label: ens2
+        mac_address: null
+        type: physical
+        slot: 0
+  - boot_disk_size: null
+    configuration:
+      - name: user-data
+        content: |-
+          #cloud-config
+          hostname: east-host1
+          manage_etc_hosts: True
+          system_info:
+            default_user:
+              name: cisco
+          password: cisco
+          chpasswd: { expire: False }
+          ssh_pwauth: True
+          ssh_authorized_keys:
+            - your-ssh-pubkey-line-goes-here
+      - name: network-config
+        content: |-
+          #network-config
+          network:
+            version: 2
+            ethernets:
+              ens2:
+                addresses:
+                - 192.168.100.5/24
+                dhcp4: false
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n1
+    image_definition: null
+    label: East-Host1
+    node_definition: ubuntu
+    parameters: {}
+    ram: null
+    tags:
+      - EAST
+    x: -440
+    y: 40
+    interfaces:
+      - id: i0
+        label: ens2
+        mac_address: null
+        type: physical
+        slot: 0
+  - boot_disk_size: null
+    configuration:
+      - name: user-data
+        content: |-
+          #cloud-config
+          hostname: east-host2
+          manage_etc_hosts: True
+          system_info:
+            default_user:
+              name: cisco
+          password: cisco
+          chpasswd: { expire: False }
+          ssh_pwauth: True
+          ssh_authorized_keys:
+            - your-ssh-pubkey-line-goes-here
+      - name: network-config
+        content: |-
+          #network-config
+          network:
+            version: 2
+            ethernets:
+              ens2:
+                addresses:
+                - 192.168.101.5/24
+                dhcp4: false
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n2
+    image_definition: null
+    label: East-Host2
+    node_definition: ubuntu
+    parameters: {}
+    ram: null
+    tags:
+      - EAST
+    x: -440
+    y: 160
+    interfaces:
+      - id: i0
+        label: ens2
+        mac_address: null
+        type: physical
+        slot: 0
+  - boot_disk_size: null
+    configuration:
+      - name: iosxe_config.txt
+        content: "Building configuration...\n\nCurrent configuration : 11088 bytes\n\
+          !\n! Last configuration change at 20:39:09 UTC Sun Mar 29 2026\n!\nversion\
+          \ 17.15\nservice timestamps debug datetime msec\nservice timestamps log\
+          \ datetime msec\n!\nhostname East-SW1\n!\n!\nvrf definition Mgmt-vrf\n !\n\
+          \ address-family ipv4\n exit-address-family\n !\n address-family ipv6\n\
+          \ exit-address-family\n!\nvrf definition north\n rd 103:65001\n !\n address-family\
+          \ ipv4\n  route-target export 103:2\n  route-target import 104:2\n  route-target\
+          \ export 103:2 stitching\n  route-target import 104:2 stitching\n exit-address-family\n\
+          !\nno logging console\nno aaa new-model\nno process cpu autoprofile hog\n\
+          switch 1 provision c9kv-uadp-8p\n!\n!\n!\n!\nip routing\n!\n!\n!\n!\n!\n\
+          !\nip dhcp pool webuidhcp\n!\n!\n!\nlogin on-success log\nipv6 nd cache\
+          \ expire refresh\nipv6 unicast-routing\n!\n!\n!\n!\n!\n!\n!\nl2vpn evpn\n\
+          \ router-id Loopback1\n default-gateway advertise\n!\nl2vpn evpn instance\
+          \ 1 vlan-based\n encapsulation vxlan\n replication-type ingress\n!\nl2vpn\
+          \ evpn instance 2 vlan-based\n encapsulation vxlan\n replication-type ingress\n\
+          !\n!\ncrypto pki trustpoint TP-self-signed-2957430692\n enrollment selfsigned\n\
+          \ subject-name cn=IOS-Self-Signed-Certificate-2957430692\n revocation-check\
+          \ none\n rsakeypair TP-self-signed-2957430692\n hash sha512\n!\ncrypto pki\
+          \ trustpoint SLA-TrustPoint\n enrollment pkcs12\n revocation-check crl\n\
+          \ hash sha512\n!\n!\ncrypto pki certificate chain TP-self-signed-2957430692\n\
+          \ certificate self-signed 01\n  30820330 30820218 A0030201 02020101 300D0609\
+          \ 2A864886 F70D0101 0D050030\n  31312F30 2D060355 04030C26 494F532D 53656C66\
+          \ 2D536967 6E65642D 43657274\n  69666963 6174652D 32393537 34333036 3932301E\
+          \ 170D3236 30333238 31313530\n  31395A17 0D333630 33323731 31353031 395A3031\
+          \ 312F302D 06035504 030C2649\n  4F532D53 656C662D 5369676E 65642D43 65727469\
+          \ 66696361 74652D32 39353734\n  33303639 32308201 22300D06 092A8648 86F70D01\
+          \ 01010500 0382010F 00308201\n  0A028201 0100C151 2C2F95EB D809FF48 E1081D9E\
+          \ C52D6E0C 99946A72 D3ABAA6B\n  07CE87F8 61819F52 9A913167 CAC1CD69 EC49E108\
+          \ 756B6592 72890D38 F59CFE1B\n  4C0D3355 215B2A6B 4E4F5A1E 5AA1642C 955C0C91\
+          \ 121097F9 7FF7D092 BC76112F\n  9242DDF6 DFBF9228 128DBCAD 0EB60890 B7B40F3C\
+          \ FEBD73AC CDBF58BB F44166E2\n  D082D38A 786ECAAC D8CD1ED8 0629FF63 AFF4A6F7\
+          \ FFCE33E0 3035454C 307A4691\n  BD787F80 9338815F 51CCBC2A 81E61A9D 63415DB9\
+          \ 2CAECCB3 2C8AE9C9 607629D6\n  BF404CCD 61380BBC 9FDD2EBE 5E1D645E EFE89251\
+          \ C775BE4F 494DCD92 2F5A9F26\n  D43F8A97 4CE91A7F F7BF6572 7DD1DB9F 6AC64DF9\
+          \ 464ECA72 4C546373 6C69BD86\n  0F988DF1 F2EB0203 010001A3 53305130 1D060355\
+          \ 1D0E0416 0414AFB2 53B02503\n  9851F961 B02FC9BE 92CEAF0C 181B301F 0603551D\
+          \ 23041830 168014AF B253B025\n  039851F9 61B02FC9 BE92CEAF 0C181B30 0F060355\
+          \ 1D130101 FF040530 030101FF\n  300D0609 2A864886 F70D0101 0D050003 82010100\
+          \ A6BA26C0 B4A62609 DDD195E8\n  D2AE8CCC A99383AD 3BC56ECD D872F09C B4A3D73A\
+          \ 796BA071 660FDF6A 3EA83D7C\n  5E5E1A43 A7CE4540 4F6C2452 77CBD8B7 128948A2\
+          \ 23E2B609 39030891 5EC9090F\n  E6233280 D7AD510E 83AD56CB B138E14C 1E839053\
+          \ AFDE0E20 389F8677 5D3964AE\n  F368F929 CB4A9000 F57C0C37 4888218A F9C8B139\
+          \ 6E0A6C54 790CD6CB C436252C\n  3F17BE28 BE672323 F14D8292 69F06B01 5C684A28\
+          \ 7CE155C5 F040F3AE 98B47BBB\n  FCE312D2 A1659D4F B141732C 35D22680 626C60B6\
+          \ 499583AD 0E010D15 8477AF06\n  C6722D11 C863371B 96FF8274 2024C3D1 F82E8AA1\
+          \ 7EE77D4C 9040B033 82CCEB87\n  1582F868 2180A5E3 A8041A28 2A3E97CA 47D2AC84\n\
+          \  \tquit\ncrypto pki certificate chain SLA-TrustPoint\n certificate ca\
+          \ 01\n  30820321 30820209 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030\n\
+          \  32310E30 0C060355 040A1305 43697363 6F312030 1E060355 04031317 43697363\n\
+          \  6F204C69 63656E73 696E6720 526F6F74 20434130 1E170D31 33303533 30313934\n\
+          \  3834375A 170D3338 30353330 31393438 34375A30 32310E30 0C060355 040A1305\n\
+          \  43697363 6F312030 1E060355 04031317 43697363 6F204C69 63656E73 696E6720\n\
+          \  526F6F74 20434130 82012230 0D06092A 864886F7 0D010101 05000382 010F0030\n\
+          \  82010A02 82010100 A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D\n\
+          \  CBB4C798 212AA147 C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520\n\
+          \  1C394D78 462EF239 C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE\n\
+          \  4AA4E80D DB6FD1C9 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC\n\
+          \  7390A3EB 2B5436AD C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188\n\
+          \  68E69491 20F320E7 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7\n\
+          \  C7479096 B4CB2D62 EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191\n\
+          \  C55F0D76 61F9A4CD 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44\n\
+          \  DFC7C6CF 04DD7FD1 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201\n\
+          \  06300F06 03551D13 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85\n\
+          \  4B3D31E5 1B3E6A17 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500\n\
+          \  03820101 00507F24 D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905\n\
+          \  604EDCDE FF4FED2B 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B\n\
+          \  D98987BF E40CBD9E 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8\n\
+          \  467A3DF4 4D565700 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C\n\
+          \  7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B\n\
+          \  5FB0DA06 B92AFE7F 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678\n\
+          \  80DDCD16 D6BACECA EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB\n\
+          \  418616A9 4093E049 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0\n\
+          \  D697DF7F 28\n  \tquit\n!\n!\nlicense boot level network-advantage addon\
+          \ dna-advantage\nmemory free low-watermark processor 74370\n!\ndiagnostic\
+          \ bootup level minimal\n!\nspanning-tree mode rapid-pvst\nspanning-tree\
+          \ extend system-id\n!\n!\n!\n!\nredundancy\n mode sso\ncrypto engine compliance\
+          \ shield disable\n!\n!\n!\n!\n!\nvlan configuration 100\n member evpn-instance\
+          \ 1 vni 10100\nvlan configuration 101\n member evpn-instance 2 vni 10101\n\
+          vlan configuration 200\n member vni 5000\nno cdp run\n!\n!\nclass-map match-any\
+          \ system-cpp-police-ewlc-control\n description EWLC Control\nclass-map match-any\
+          \ system-cpp-police-topology-control\n description Topology control\nclass-map\
+          \ match-any system-cpp-police-sw-forward\n description Sw forwarding, L2\
+          \ LVX data packets, LOGGING, Transit Traffic\nclass-map match-any system-cpp-default\n\
+          \ description EWLC Data, Inter FED Traffic\nclass-map match-any system-cpp-police-sys-data\n\
+          \ description Openflow, Exception, EGR Exception, NFL Sampled Data, RPF\
+          \ Failed\nclass-map match-any system-cpp-police-punt-webauth\n description\
+          \ Punt Webauth\nclass-map match-any system-cpp-police-l2lvx-control\n description\
+          \ L2 LVX control packets\nclass-map match-any system-cpp-police-forus\n\
+          \ description Forus traffic\nclass-map match-any system-cpp-police-multicast-end-station\n\
+          \ description MCAST END STATION\nclass-map match-any system-cpp-police-forus-addr-resolution\n\
+          \ description Forus address resolution\nclass-map match-any system-cpp-police-high-rate-app\n\
+          \ description High Rate Applications\nclass-map match-any system-cpp-police-multicast\n\
+          \ description MCAST Data\nclass-map match-any system-cpp-police-meraki-next-tunnel\n\
+          \ description Meraki Next tunnel\nclass-map match-any system-cpp-police-l2-control\n\
+          \ description L2 control\nclass-map match-any system-cpp-police-dot1x-auth\n\
+          \ description DOT1X Auth\nclass-map match-any system-cpp-police-data\n description\
+          \ ICMP redirect, ICMP_GEN and BROADCAST\nclass-map match-any system-cpp-police-stackwise-virt-control\n\
+          \ description Stackwise Virtual OOB\nclass-map match-any non-client-nrt-class\n\
+          class-map match-any system-cpp-police-routing-control\n description Routing\
+          \ control and Low Latency\nclass-map match-any system-cpp-police-protocol-snooping\n\
+          \ description Protocol snooping\nclass-map match-any system-cpp-police-dhcp-snooping\n\
+          \ description DHCP snooping\nclass-map match-any system-cpp-police-ios-routing\n\
+          \ description L2 control, Topology control, Routing control, Low Latency\n\
+          class-map match-any system-cpp-police-system-critical\n description System\
+          \ Critical and Gold Pkt\nclass-map match-any system-cpp-police-ios-feature\n\
+          \ description ICMPGEN,BROADCAST,ICMP,L2LVXCntrl,ProtoSnoop,PuntWebauth,MCASTData,Transit,DOT1XAuth,Swfwd,LOGGING,L2LVXData,ForusTraffic,ForusARP,McastEndStn,Openflow,Exception,EGRExcption,NflSampled,RpfFailed\n\
+          !\npolicy-map system-cpp-policy\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ninterface\
+          \ Loopback0\n no ip address\n!\ninterface Loopback1\n ip address 10.0.255.200\
+          \ 255.255.255.255\n!\ninterface GigabitEthernet0/0\n vrf forwarding Mgmt-vrf\n\
+          \ ip address dhcp\n negotiation auto\n no cdp enable\n!\ninterface GigabitEthernet1/0/1\n\
+          \ switchport access vlan 100\n switchport mode access\n no cdp enable\n\
+          !\ninterface GigabitEthernet1/0/2\n switchport access vlan 101\n no cdp\
+          \ enable\n!\ninterface GigabitEthernet1/0/3\n no switchport\n ip address\
+          \ 10.0.255.1 255.255.255.252\n ip ospf network point-to-point\n no cdp enable\n\
+          !\ninterface GigabitEthernet1/0/4\n no switchport\n vrf forwarding north\n\
+          \ ip address 10.100.100.1 255.255.255.0\n no cdp enable\n!\ninterface GigabitEthernet1/0/5\n\
+          \ no cdp enable\n!\ninterface GigabitEthernet1/0/6\n no cdp enable\n!\n\
+          interface GigabitEthernet1/0/7\n no cdp enable\n!\ninterface GigabitEthernet1/0/8\n\
+          \ no cdp enable\n!\ninterface GigabitEthernet1/0/9\n no cdp enable\n!\n\
+          interface GigabitEthernet1/0/10\n no cdp enable\n!\ninterface GigabitEthernet1/0/11\n\
+          \ no cdp enable\n!\ninterface GigabitEthernet1/0/12\n no cdp enable\n!\n\
+          interface GigabitEthernet1/0/13\n no cdp enable\n!\ninterface GigabitEthernet1/0/14\n\
+          \ no cdp enable\n!\ninterface GigabitEthernet1/0/15\n no cdp enable\n!\n\
+          interface GigabitEthernet1/0/16\n no cdp enable\n!\ninterface GigabitEthernet1/0/17\n\
+          \ no cdp enable\n!\ninterface GigabitEthernet1/0/18\n no cdp enable\n!\n\
+          interface GigabitEthernet1/0/19\n no cdp enable\n!\ninterface GigabitEthernet1/0/20\n\
+          \ no cdp enable\n!\ninterface GigabitEthernet1/0/21\n no cdp enable\n!\n\
+          interface GigabitEthernet1/0/22\n no cdp enable\n!\ninterface GigabitEthernet1/0/23\n\
+          \ no cdp enable\n!\ninterface GigabitEthernet1/0/24\n no cdp enable\n!\n\
+          interface Vlan1\n no ip address\n shutdown\n!\ninterface Vlan100\n mac-address\
+          \ aaaa.bbbb.cccc\n vrf forwarding north\n ip address 192.168.100.1 255.255.255.0\n\
+          !\ninterface Vlan101\n vrf forwarding north\n ip address 192.168.101.1 255.255.255.0\n\
+          !\ninterface Vlan200\n description CORE-SVI L3\n vrf forwarding north\n\
+          \ ip unnumbered Loopback1\n no autostate\n!\ninterface nve1\n no ip address\n\
+          \ source-interface Loopback1\n host-reachability protocol bgp\n member vni\
+          \ 10100 ingress-replication\n member vni 5000 vrf north\n member vni 10101\
+          \ ingress-replication\n!\nrouter ospf 1\n router-id 10.0.255.200\n network\
+          \ 10.0.255.0 0.0.0.255 area 0\n!\nrouter bgp 65001\n bgp log-neighbor-changes\n\
+          \ no bgp default ipv4-unicast\n neighbor 10.0.255.201 remote-as 65001\n\
+          \ neighbor 10.0.255.201 update-source Loopback1\n !\n address-family ipv4\n\
+          \ exit-address-family\n !\n address-family l2vpn evpn\n  neighbor 10.0.255.201\
+          \ activate\n  neighbor 10.0.255.201 send-community both\n exit-address-family\n\
+          \ !\n address-family ipv4 vrf north\n  advertise l2vpn evpn\n  redistribute\
+          \ connected\n exit-address-family\n!\nip forward-protocol nd\nip tcp mss\
+          \ 1280\nip tcp window-size 212000\nip http server\nip http authentication\
+          \ local\nip http secure-server\nip ssh bulk-mode 131072\n!\n!\n!\n!\ncontrol-plane\n\
+          \ service-policy input system-cpp-policy\n!\n!\n!\nline con 0\n exec-timeout\
+          \ 0 0\n stopbits 1\nline vty 0 4\n exec-timeout 0 0\n login\n transport\
+          \ input ssh\nline vty 5 15\n login\n transport input ssh\n!\n!\n!\n!\n!\n\
+          !\n!\nend"
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n3
+    image_definition: null
+    label: East-sw1
+    node_definition: cat9000v-uadp
+    parameters: {}
+    ram: null
+    tags:
+      - EAST
+    x: -240
+    y: 80
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: GigabitEthernet1/0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: GigabitEthernet1/0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: GigabitEthernet1/0/3
+        mac_address: null
+        type: physical
+        slot: 3
+      - id: i5
+        label: GigabitEthernet1/0/4
+        mac_address: null
+        type: physical
+        slot: 4
+      - id: i6
+        label: GigabitEthernet1/0/5
+        mac_address: null
+        type: physical
+        slot: 5
+      - id: i7
+        label: GigabitEthernet1/0/6
+        mac_address: null
+        type: physical
+        slot: 6
+      - id: i8
+        label: GigabitEthernet1/0/7
+        mac_address: null
+        type: physical
+        slot: 7
+      - id: i9
+        label: GigabitEthernet1/0/8
+        mac_address: null
+        type: physical
+        slot: 8
+      - id: i10
+        label: GigabitEthernet1/0/9
+        mac_address: null
+        type: physical
+        slot: 9
+      - id: i11
+        label: GigabitEthernet1/0/10
+        mac_address: null
+        type: physical
+        slot: 10
+      - id: i12
+        label: GigabitEthernet1/0/11
+        mac_address: null
+        type: physical
+        slot: 11
+      - id: i13
+        label: GigabitEthernet1/0/12
+        mac_address: null
+        type: physical
+        slot: 12
+      - id: i14
+        label: GigabitEthernet1/0/13
+        mac_address: null
+        type: physical
+        slot: 13
+      - id: i15
+        label: GigabitEthernet1/0/14
+        mac_address: null
+        type: physical
+        slot: 14
+      - id: i16
+        label: GigabitEthernet1/0/15
+        mac_address: null
+        type: physical
+        slot: 15
+      - id: i17
+        label: GigabitEthernet1/0/16
+        mac_address: null
+        type: physical
+        slot: 16
+      - id: i18
+        label: GigabitEthernet1/0/17
+        mac_address: null
+        type: physical
+        slot: 17
+      - id: i19
+        label: GigabitEthernet1/0/18
+        mac_address: null
+        type: physical
+        slot: 18
+      - id: i20
+        label: GigabitEthernet1/0/19
+        mac_address: null
+        type: physical
+        slot: 19
+      - id: i21
+        label: GigabitEthernet1/0/20
+        mac_address: null
+        type: physical
+        slot: 20
+      - id: i22
+        label: GigabitEthernet1/0/21
+        mac_address: null
+        type: physical
+        slot: 21
+      - id: i23
+        label: GigabitEthernet1/0/22
+        mac_address: null
+        type: physical
+        slot: 22
+      - id: i24
+        label: GigabitEthernet1/0/23
+        mac_address: null
+        type: physical
+        slot: 23
+      - id: i25
+        label: GigabitEthernet1/0/24
+        mac_address: null
+        type: physical
+        slot: 24
+  - boot_disk_size: null
+    configuration:
+      - name: iosxe_config.txt
+        content: "Building configuration...\n\nCurrent configuration : 10285 bytes\n\
+          !\n! Last configuration change at 20:39:09 UTC Sun Mar 29 2026\n!\nversion\
+          \ 17.15\nservice timestamps debug datetime msec\nservice timestamps log\
+          \ datetime msec\n!\nhostname West-SW1\n!\n!\nvrf definition Mgmt-vrf\n !\n\
+          \ address-family ipv4\n exit-address-family\n !\n address-family ipv6\n\
+          \ exit-address-family\n!\nvrf definition north\n rd 104:65001\n !\n address-family\
+          \ ipv4\n  route-target export 104:2\n  route-target import 103:2\n  route-target\
+          \ export 104:2 stitching\n  route-target import 103:2 stitching\n exit-address-family\n\
+          !\nno logging console\nno aaa new-model\nswitch 1 provision c9kv-uadp-8p\n\
+          !\n!\n!\n!\nip routing\n!\n!\n!\n!\n!\n!\n!\n!\nlogin on-success log\n!\n\
+          !\n!\n!\n!\n!\n!\nl2vpn evpn\n router-id Loopback1\n default-gateway advertise\n\
+          !\nl2vpn evpn instance 1 vlan-based\n encapsulation vxlan\n replication-type\
+          \ ingress\n!\n!\ncrypto pki trustpoint TP-self-signed-2957430692\n enrollment\
+          \ selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-2957430692\n\
+          \ revocation-check none\n rsakeypair TP-self-signed-2957430692\n hash sha512\n\
+          !\ncrypto pki trustpoint SLA-TrustPoint\n enrollment pkcs12\n revocation-check\
+          \ crl\n hash sha512\n!\n!\ncrypto pki certificate chain TP-self-signed-2957430692\n\
+          \ certificate self-signed 01\n  30820330 30820218 A0030201 02020101 300D0609\
+          \ 2A864886 F70D0101 0D050030\n  31312F30 2D060355 04030C26 494F532D 53656C66\
+          \ 2D536967 6E65642D 43657274\n  69666963 6174652D 32393537 34333036 3932301E\
+          \ 170D3236 30333238 31313531\n  33395A17 0D333630 33323731 31353133 395A3031\
+          \ 312F302D 06035504 030C2649\n  4F532D53 656C662D 5369676E 65642D43 65727469\
+          \ 66696361 74652D32 39353734\n  33303639 32308201 22300D06 092A8648 86F70D01\
+          \ 01010500 0382010F 00308201\n  0A028201 0100BA34 2C0F5A7F F98F25BC 38AD140A\
+          \ E155A43F 5EE5EA7B FEFBB924\n  33E01843 032597D6 FAE8B74D 58EA1785 D2195A36\
+          \ 448B3118 622605CD EB305520\n  151B9FD3 61365BBF 29D660C6 F260F182 6BFE385C\
+          \ 18BA3968 F6AF59A8 3206FD2A\n  4266FBFF 9D8ED0B4 4D717698 498D262D 52D29638\
+          \ 5C435797 6A664DE3 7F50F2F1\n  9300F2D9 F84E51F0 C07C8BEC 07C6D87E 14AC3706\
+          \ BE89E277 2C227E2C 8023C903\n  DA6427F5 295A0ED0 03B3F930 1CB8450A 13021EBE\
+          \ 111F6448 D7B29F82 B570F5E8\n  EDC60B07 063A9851 E69EFF28 16027F1F 2F4C639E\
+          \ 629D0797 9A1BB13A DB2D64AC\n  73C25159 C993C2CF 6C210EE8 EF1E675C 00D07B02\
+          \ 4BADA523 2C356482 58866B26\n  F5CFC5F6 F53D0203 010001A3 53305130 1D060355\
+          \ 1D0E0416 0414D8E1 BC1BC171\n  3D2ADAB8 34C87CC7 F211CDE5 CFA7301F 0603551D\
+          \ 23041830 168014D8 E1BC1BC1\n  713D2ADA B834C87C C7F211CD E5CFA730 0F060355\
+          \ 1D130101 FF040530 030101FF\n  300D0609 2A864886 F70D0101 0D050003 82010100\
+          \ 0768746F C6B20A61 124EBA12\n  0841D79E 1546282B 49B7A18B 94798383 298C13DF\
+          \ 45F67BB6 5A72B324 C3C93176\n  BAB1858A A6B2849F 553C3D41 40E174B1 36708FA3\
+          \ D9C2A524 2BCBB27C ABC31CC3\n  0ED43D52 0F8B4871 B15101E9 7CA471CA DE685FD6\
+          \ 00EDB4BC A6C9989A 911B642C\n  D8978518 0AEDCDA8 FEEE802D 0175ACA5 99D5553C\
+          \ 26C4900E 87E1DFBE 42A44D2E\n  D7411A60 87BC80A4 BEE09C6A 834A1FC9 3A076B42\
+          \ 26C64817 9EB2668F DA09E00C\n  AF8C812B 53C720D9 CFEFC4B7 30CD2A83 F774CF0E\
+          \ 36166092 9DBADBFA 1113CAEF\n  80CEE648 14CC4240 7C6FE9E5 7B96450D FED67C9B\
+          \ FB4C1A5D B00FFFBE 91ECE116\n  52644157 C598E5D7 8BE65118 26456BF2 F857C371\n\
+          \  \tquit\ncrypto pki certificate chain SLA-TrustPoint\n certificate ca\
+          \ 01\n  30820321 30820209 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030\n\
+          \  32310E30 0C060355 040A1305 43697363 6F312030 1E060355 04031317 43697363\n\
+          \  6F204C69 63656E73 696E6720 526F6F74 20434130 1E170D31 33303533 30313934\n\
+          \  3834375A 170D3338 30353330 31393438 34375A30 32310E30 0C060355 040A1305\n\
+          \  43697363 6F312030 1E060355 04031317 43697363 6F204C69 63656E73 696E6720\n\
+          \  526F6F74 20434130 82012230 0D06092A 864886F7 0D010101 05000382 010F0030\n\
+          \  82010A02 82010100 A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D\n\
+          \  CBB4C798 212AA147 C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520\n\
+          \  1C394D78 462EF239 C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE\n\
+          \  4AA4E80D DB6FD1C9 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC\n\
+          \  7390A3EB 2B5436AD C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188\n\
+          \  68E69491 20F320E7 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7\n\
+          \  C7479096 B4CB2D62 EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191\n\
+          \  C55F0D76 61F9A4CD 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44\n\
+          \  DFC7C6CF 04DD7FD1 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201\n\
+          \  06300F06 03551D13 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85\n\
+          \  4B3D31E5 1B3E6A17 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500\n\
+          \  03820101 00507F24 D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905\n\
+          \  604EDCDE FF4FED2B 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B\n\
+          \  D98987BF E40CBD9E 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8\n\
+          \  467A3DF4 4D565700 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C\n\
+          \  7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B\n\
+          \  5FB0DA06 B92AFE7F 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678\n\
+          \  80DDCD16 D6BACECA EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB\n\
+          \  418616A9 4093E049 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0\n\
+          \  D697DF7F 28\n  \tquit\n!\n!\nlicense boot level network-advantage addon\
+          \ dna-advantage\nmemory free low-watermark processor 74370\n!\ndiagnostic\
+          \ bootup level minimal\n!\nspanning-tree mode rapid-pvst\nspanning-tree\
+          \ extend system-id\n!\n!\n!\n!\nredundancy\n mode sso\ncrypto engine compliance\
+          \ shield disable\n!\n!\n!\n!\n!\nvlan configuration 100\n member evpn-instance\
+          \ 1 vni 10100\nvlan configuration 200\n member vni 5000\n!\n!\nclass-map\
+          \ match-any system-cpp-police-ewlc-control\n description EWLC Control\n\
+          class-map match-any system-cpp-police-topology-control\n description Topology\
+          \ control\nclass-map match-any system-cpp-police-sw-forward\n description\
+          \ Sw forwarding, L2 LVX data packets, LOGGING, Transit Traffic\nclass-map\
+          \ match-any system-cpp-default\n description EWLC Data, Inter FED Traffic\n\
+          class-map match-any system-cpp-police-sys-data\n description Openflow, Exception,\
+          \ EGR Exception, NFL Sampled Data, RPF Failed\nclass-map match-any system-cpp-police-punt-webauth\n\
+          \ description Punt Webauth\nclass-map match-any system-cpp-police-l2lvx-control\n\
+          \ description L2 LVX control packets\nclass-map match-any system-cpp-police-forus\n\
+          \ description Forus traffic\nclass-map match-any system-cpp-police-multicast-end-station\n\
+          \ description MCAST END STATION\nclass-map match-any system-cpp-police-forus-addr-resolution\n\
+          \ description Forus address resolution\nclass-map match-any system-cpp-police-high-rate-app\n\
+          \ description High Rate Applications\nclass-map match-any system-cpp-police-multicast\n\
+          \ description MCAST Data\nclass-map match-any system-cpp-police-meraki-next-tunnel\n\
+          \ description Meraki Next tunnel\nclass-map match-any system-cpp-police-l2-control\n\
+          \ description L2 control\nclass-map match-any system-cpp-police-dot1x-auth\n\
+          \ description DOT1X Auth\nclass-map match-any system-cpp-police-data\n description\
+          \ ICMP redirect, ICMP_GEN and BROADCAST\nclass-map match-any system-cpp-police-stackwise-virt-control\n\
+          \ description Stackwise Virtual OOB\nclass-map match-any non-client-nrt-class\n\
+          class-map match-any system-cpp-police-routing-control\n description Routing\
+          \ control and Low Latency\nclass-map match-any system-cpp-police-protocol-snooping\n\
+          \ description Protocol snooping\nclass-map match-any system-cpp-police-dhcp-snooping\n\
+          \ description DHCP snooping\nclass-map match-any system-cpp-police-ios-routing\n\
+          \ description L2 control, Topology control, Routing control, Low Latency\n\
+          class-map match-any system-cpp-police-system-critical\n description System\
+          \ Critical and Gold Pkt\nclass-map match-any system-cpp-police-ios-feature\n\
+          \ description ICMPGEN,BROADCAST,ICMP,L2LVXCntrl,ProtoSnoop,PuntWebauth,MCASTData,Transit,DOT1XAuth,Swfwd,LOGGING,L2LVXData,ForusTraffic,ForusARP,McastEndStn,Openflow,Exception,EGRExcption,NflSampled,RpfFailed\n\
+          !\npolicy-map system-cpp-policy\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\ninterface\
+          \ Loopback0\n no ip address\n!\ninterface Loopback1\n ip address 10.0.255.201\
+          \ 255.255.255.255\n!\ninterface GigabitEthernet0/0\n vrf forwarding Mgmt-vrf\n\
+          \ ip address dhcp\n negotiation auto\n!\ninterface GigabitEthernet1/0/1\n\
+          \ switchport access vlan 100\n switchport mode access\n!\ninterface GigabitEthernet1/0/2\n\
+          \ switchport access vlan 101\n switchport mode access\n!\ninterface GigabitEthernet1/0/3\n\
+          \ no switchport\n ip address 10.0.255.2 255.255.255.252\n ip ospf network\
+          \ point-to-point\n!\ninterface GigabitEthernet1/0/4\n!\ninterface GigabitEthernet1/0/5\n\
+          !\ninterface GigabitEthernet1/0/6\n!\ninterface GigabitEthernet1/0/7\n!\n\
+          interface GigabitEthernet1/0/8\n!\ninterface GigabitEthernet1/0/9\n!\ninterface\
+          \ GigabitEthernet1/0/10\n!\ninterface GigabitEthernet1/0/11\n!\ninterface\
+          \ GigabitEthernet1/0/12\n!\ninterface GigabitEthernet1/0/13\n!\ninterface\
+          \ GigabitEthernet1/0/14\n!\ninterface GigabitEthernet1/0/15\n!\ninterface\
+          \ GigabitEthernet1/0/16\n!\ninterface GigabitEthernet1/0/17\n!\ninterface\
+          \ GigabitEthernet1/0/18\n!\ninterface GigabitEthernet1/0/19\n!\ninterface\
+          \ GigabitEthernet1/0/20\n!\ninterface GigabitEthernet1/0/21\n!\ninterface\
+          \ GigabitEthernet1/0/22\n!\ninterface GigabitEthernet1/0/23\n!\ninterface\
+          \ GigabitEthernet1/0/24\n!\ninterface Vlan1\n no ip address\n shutdown\n\
+          !\ninterface Vlan100\n mac-address aaaa.bbbb.cccc\n vrf forwarding north\n\
+          \ ip address 192.168.100.1 255.255.255.0\n!\ninterface Vlan200\n description\
+          \ CORE-SVI L3\n vrf forwarding north\n ip unnumbered Loopback1\n no autostate\n\
+          !\ninterface nve1\n no ip address\n source-interface Loopback1\n host-reachability\
+          \ protocol bgp\n member vni 10100 ingress-replication\n member vni 5000\
+          \ vrf north\n!\nrouter ospf 1\n router-id 10.0.255.201\n network 10.0.255.0\
+          \ 0.0.0.255 area 0\n!\nrouter bgp 65001\n bgp log-neighbor-changes\n no\
+          \ bgp default ipv4-unicast\n neighbor 10.0.255.200 remote-as 65001\n neighbor\
+          \ 10.0.255.200 update-source Loopback1\n !\n address-family ipv4\n exit-address-family\n\
+          \ !\n address-family l2vpn evpn\n  neighbor 10.0.255.200 activate\n  neighbor\
+          \ 10.0.255.200 send-community both\n exit-address-family\n !\n address-family\
+          \ ipv4 vrf north\n  advertise l2vpn evpn\n  redistribute connected\n exit-address-family\n\
+          !\nip forward-protocol nd\nip tcp mss 1280\nip tcp window-size 212000\n\
+          ip http server\nip http authentication local\nip http secure-server\nip\
+          \ ssh bulk-mode 131072\n!\n!\n!\n!\ncontrol-plane\n service-policy input\
+          \ system-cpp-policy\n!\n!\n!\nline con 0\n exec-timeout 0 0\n stopbits 1\n\
+          line vty 0 4\n exec-timeout 0 0\n login\n transport input ssh\nline vty\
+          \ 5 15\n login\n transport input ssh\n!\n!\n!\n!\n!\n!\n!\nend"
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n4
+    image_definition: null
+    label: West-sw1
+    node_definition: cat9000v-uadp
+    parameters: {}
+    ram: null
+    tags:
+      - WEST
+    x: 0
+    y: 80
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: GigabitEthernet1/0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: GigabitEthernet1/0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: GigabitEthernet1/0/3
+        mac_address: null
+        type: physical
+        slot: 3
+      - id: i5
+        label: GigabitEthernet1/0/4
+        mac_address: null
+        type: physical
+        slot: 4
+      - id: i6
+        label: GigabitEthernet1/0/5
+        mac_address: null
+        type: physical
+        slot: 5
+      - id: i7
+        label: GigabitEthernet1/0/6
+        mac_address: null
+        type: physical
+        slot: 6
+      - id: i8
+        label: GigabitEthernet1/0/7
+        mac_address: null
+        type: physical
+        slot: 7
+      - id: i9
+        label: GigabitEthernet1/0/8
+        mac_address: null
+        type: physical
+        slot: 8
+      - id: i10
+        label: GigabitEthernet1/0/9
+        mac_address: null
+        type: physical
+        slot: 9
+      - id: i11
+        label: GigabitEthernet1/0/10
+        mac_address: null
+        type: physical
+        slot: 10
+      - id: i12
+        label: GigabitEthernet1/0/11
+        mac_address: null
+        type: physical
+        slot: 11
+      - id: i13
+        label: GigabitEthernet1/0/12
+        mac_address: null
+        type: physical
+        slot: 12
+      - id: i14
+        label: GigabitEthernet1/0/13
+        mac_address: null
+        type: physical
+        slot: 13
+      - id: i15
+        label: GigabitEthernet1/0/14
+        mac_address: null
+        type: physical
+        slot: 14
+      - id: i16
+        label: GigabitEthernet1/0/15
+        mac_address: null
+        type: physical
+        slot: 15
+      - id: i17
+        label: GigabitEthernet1/0/16
+        mac_address: null
+        type: physical
+        slot: 16
+      - id: i18
+        label: GigabitEthernet1/0/17
+        mac_address: null
+        type: physical
+        slot: 17
+      - id: i19
+        label: GigabitEthernet1/0/18
+        mac_address: null
+        type: physical
+        slot: 18
+      - id: i20
+        label: GigabitEthernet1/0/19
+        mac_address: null
+        type: physical
+        slot: 19
+      - id: i21
+        label: GigabitEthernet1/0/20
+        mac_address: null
+        type: physical
+        slot: 20
+      - id: i22
+        label: GigabitEthernet1/0/21
+        mac_address: null
+        type: physical
+        slot: 21
+      - id: i23
+        label: GigabitEthernet1/0/22
+        mac_address: null
+        type: physical
+        slot: 22
+      - id: i24
+        label: GigabitEthernet1/0/23
+        mac_address: null
+        type: physical
+        slot: 23
+      - id: i25
+        label: GigabitEthernet1/0/24
+        mac_address: null
+        type: physical
+        slot: 24
+links:
+  - id: l0
+    n1: n3
+    n2: n1
+    i1: i2
+    i2: i0
+    conditioning: {}
+    label: East-sw1-GigabitEthernet1/0/1<->East-Host1-ens2
+  - id: l1
+    n1: n3
+    n2: n2
+    i1: i3
+    i2: i0
+    conditioning: {}
+    label: East-sw1-GigabitEthernet1/0/2<->East-Host2-ens2
+  - id: l2
+    n1: n3
+    n2: n4
+    i1: i4
+    i2: i4
+    conditioning: {}
+    label: East-sw1-GigabitEthernet1/0/3<->West-sw1-GigabitEthernet1/0/3
+  - id: l3
+    n1: n4
+    n2: n0
+    i1: i2
+    i2: i0
+    conditioning: {}
+    label: West-sw1-GigabitEthernet1/0/1<->West-host-ens2
+lab:
+  description: ''
+  notes: ''
+  title: L3-VXLAN-Sysmmetric-IRB
+  version: 0.3.0
